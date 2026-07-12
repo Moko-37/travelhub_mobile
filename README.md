@@ -1,50 +1,87 @@
-# Welcome to your Expo app 👋
+# TravelHub — Application Mobile Voyageur
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Application mobile destinée aux **voyageurs** pour rechercher, réserver et suivre leurs voyages sur la plateforme TravelHub.
 
-## Get started
+> Projet de portfolio — Douala, Cameroun
 
-1. Install dependencies
+## À propos
 
-   ```bash
-   npm install
-   ```
+TravelHub permet aux voyageurs camerounais de comparer les offres de plusieurs agences, réserver directement, et suivre leur voyage de bout en bout grâce à un carnet de voyage numérique intégré.
 
-2. Start the app
+## Stack technique
 
-   ```bash
-   npx expo start
-   ```
+| Composant | Technologie |
+|---|---|
+| Framework | React Native |
+| Navigation | Expo Router |
+| Gestion d'état | Redux Toolkit |
+| Authentification | OpenID Connect (Keycloak) |
 
-In the output, you'll find options to open the app in a
+## Fonctionnalités
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **Recherche d'offres** — par destination, dates, budget
+- **Réservation directe** — réservation d'une offre publiée par une agence/branche
+- **Carnet de voyage** — suivi des étapes, documents liés (billets, vouchers), statut de la réservation
+- **Historique des voyages** — réservations passées et en cours
+- **Avis** — notation des agences après un voyage
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Prérequis
 
-## Get a fresh project
+- Node.js 18+
+- Expo CLI (`npx expo`)
+- Expo Go (dernière version SDK) pour tester sur mobile, ou un simulateur/émulateur
 
-When you're ready, run:
+## Installation
 
 ```bash
-npm run reset-project
+git clone https://github.com/TON_USERNAME/travelhub-mobile.git
+cd travelhub-mobile
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Configuration
 
-## Learn more
+Crée un fichier `.env` à la racine :
 
-To learn more about developing your project with Expo, look at the following resources:
+```env
+EXPO_PUBLIC_API_URL=http://localhost:8080
+EXPO_PUBLIC_OIDC_AUTHORITY=http://localhost:8180/realms/travelhub
+EXPO_PUBLIC_OIDC_CLIENT_ID=travelhub-mobile
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Lancer le projet en développement
 
-## Join the community
+```bash
+npx expo start
+```
 
-Join our community of developers creating universal apps.
+Scanne le QR code avec l'app **Expo Go**, ou lance sur un émulateur :
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npx expo start --android
+npx expo start --ios
+```
+
+## Structure du projet
+
+```
+app/                # Routes (Expo Router — structure basée sur les fichiers)
+├── (auth)/          # Écrans d'authentification
+├── (tabs)/          # Navigation principale (recherche, réservations, profil)
+components/          # Composants réutilisables
+store/               # Redux Toolkit — slices et store
+services/             # Appels API vers le backend
+```
+
+## Périmètre (MVP)
+
+- Authentification voyageur
+- Recherche et réservation d'offres
+- Carnet de voyage (étapes, documents, statut)
+- Historique des voyages
+
+**Hors périmètre (V2)** : paiement en ligne intégré (Mobile Money), messagerie temps réel, notifications push avancées.
+
+## Auteur
+
+Yvan — Douala, Cameroun
